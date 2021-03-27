@@ -9,6 +9,8 @@ import produce from 'immer'
 const SWMCFHState = {
   id: "SWMCFH",
   name: "Swedish Medical Center First Hill",
+  LAT: 47.609,
+  LNG: -122.328,
   availableBeds: {
     med: {
       A14: 1, 

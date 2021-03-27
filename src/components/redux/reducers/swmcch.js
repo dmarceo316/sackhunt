@@ -10,6 +10,8 @@ import produce from 'immer';
 const SWMCCHState = {
     id: "SWMCCH",
     name: "Swedish Medical Center Cherry Hill",
+    LAT: 47.609,
+    LNG: -122.318,
     availableBeds: {
     med: {
         CHA01: 1, 

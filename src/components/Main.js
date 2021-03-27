@@ -1,5 +1,5 @@
-import React, { Component , useState } from 'react';
-import { connect, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import RenderMap from './Map';
 import SWMCCHBedInfo from './SWMCCHInfo';
 import SWMCFHBedInfo from './BedInfo';
@@ -70,7 +70,7 @@ function Main(){
                 </div>
             </div>
             <div className="row mt-5">
-            {
+                {
                     swmcchdisplay ? 
                     <div>
                     <SWMCCHBedInfo/>
