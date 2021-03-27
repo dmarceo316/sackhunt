@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Montserrat:wght@100&family=Pacifico&display=swap');
+
+
+.App {
+  text-align: center;
+  color: white;
+}
+
+.bg{
+  background-color: #1982C4;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.title{
+  font-family: 'Pacifico', cursive;
+  color: white;
+}
+
+.card-text{
+  color: black;
+  font-weight: bold;
+}
+
+.hospital-text{
+  font-weight: bold;
+  font-size: 50px;
+}
+
+.anime{
+  animation: bounce;
+  animation-duration: 2s;
+}
+
+.fadeIn{
+  animation: fadeinDown;
+  animation-duration: 4s;
+}
+
+.hideswmcch{
+  display: none;
+}
+
+.showswmcch{
+  display: block;
+}

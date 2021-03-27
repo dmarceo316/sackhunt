@@ -1,0 +1,80 @@
+[
+    {
+        "HOSPITAL_ID": "SWMCFH-1",
+        "NAME" : "Swedish Medical Center First Hill", 
+        "LAT": 47.609,
+        "LNG": -122.328,
+        "BEDS":{
+            "TOTAL": 20,
+            "MED": 10,
+            "TELE": 5,
+            "NEURO": 2,
+            "ICU" : 3
+        }
+    },
+    {
+        "HOSPITAL_ID": "SWMCCH-1",
+        "NAME": "Swedish Medical Center Cherry Hill",
+        "LAT": 47.609,
+        "LNG": -122.318,
+        "BEDS":{
+            "TOTAL": 20,
+            "MED": 10,
+            "TELE": 5,
+            "NEURO": 2,
+            "ICU" : 3
+        }
+    },
+    {
+        "HOSPITAL_ID": "OVL-1",
+        "NAME": "Overlake Medical Center",
+        "LAT": 47.6209,
+        "LNG": -122.1868,
+        "BEDS":{
+            "TOTAL": 20,
+            "MED": 10,
+            "TELE": 5,
+            "NEURO": 2,
+            "ICU" : 3
+        }
+    },
+    {
+        "HOSPITAL_ID": "PRMC-1",
+        "NAME": "Providence Regional Medical Center Everett",
+        "LAT": 48.0001,
+        "LNG": -122.2059,
+        "BEDS":{
+            "TOTAL": 20,
+            "MED": 10,
+            "TELE": 5,
+            "NEURO": 2,
+            "ICU" : 3
+        }
+    },
+    {
+        "HOSPITAL_ID": "SJMC-1",
+        "NAME": "St. Joseph's Medical Center",
+        "LAT": 47.2454,
+        "LNG": -122.4479,
+        "BEDS":{
+            "TOTAL": 20,
+            "MED": 10,
+            "TELE": 5,
+            "NEURO": 2,
+            "ICU" : 3
+        }
+    },
+    {
+        "HOSPITAL_ID": "PSPH-1",
+        "NAME": "Providence St. Peters Hospital",
+        "LAT": 47.0530,
+        "LNG": -122.8480,
+        "BEDS":{
+            "TOTAL": 20,
+            "MED": 10,
+            "TELE": 5,
+            "NEURO": 2,
+            "ICU" : 3
+        }
+    }         
+]
