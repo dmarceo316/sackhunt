@@ -2,7 +2,7 @@ import * as ActionTypes from '../actions/ActionTypes';
 import { takeA14, returnA14, takeA13, returnA13, takeA12, returnA12, takeB19, returnB19, takeB24, returnB24,
   takeB27, returnB27, takeC10, returnC10, takeC11, returnC11, takeC16, returnC16, takeD12, returnD12, takeA20, 
   returnA20, takeA24, returnA24, takeB03, returnB03, takeB04, returnB04, takeB05, returnB05, takeC01, returnC01, 
-  takeC02, returnC02, takeC06, returnC06
+  takeC02, returnC02, takeC06, returnC06, swmcfh_staff
 } from '../actions/ActionCreators'
 import produce from 'immer'
 
@@ -37,6 +37,12 @@ const SWMCFHState = {
       C06: 1
     },
     display: true
+    },
+  staff: {
+    LPN: 2,
+    RN: 3,
+    CNA: 5,
+    message: ""
   }
 };
 
@@ -88,7 +94,8 @@ export const return_C02 = returnC02
 export const take_C06 = takeC06
 export const return_C06 = returnC06
 
-
+//staffing 
+export const SWMCFH_STAFF = swmcfh_staff
 
 export const SWMCFH = (state = SWMCFHState, action) => {
     switch (action.type) {
@@ -238,6 +245,10 @@ export const SWMCFH = (state = SWMCFHState, action) => {
       case ActionTypes.TAKE_C06:
         return produce(state, draftState => {
           draftState.availableBeds.icu.C06 -= 1
+        })
+      case ActionTypes.SWMCFH_STAFF:
+        return produce(state, draftState =>{
+          draftState.staff = action.payload
         })
         default: 
         return state

@@ -91,4 +91,5 @@ export const RETURN_CH_ICU_C03 = "RETURN_CH_ICU_C03"
 export const DISPLAY_SWMCCH = "DISPLAY_SWMCCH"
 
 
-
+//staffing
+export const SWMCFH_STAFF = "SWMCFH_STAFF"

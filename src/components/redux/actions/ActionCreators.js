@@ -267,3 +267,11 @@ export const return_CH_ICU_C03 = () => ({
 export const display_SWMCCH = () => ({
     type: ActionTypes.DISPLAY_SWMCCH
 })
+
+
+//Staffing SWMCFH
+
+export const swmcfh_staff = (event) => ({
+    type: ActionTypes.SWMCFH_STAFF,
+    payload: event
+})

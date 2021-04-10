@@ -2,15 +2,42 @@ import React,{ Component, useState } from "react";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import ChangingProgressProvider from './changingProgressProvider';
 import 'react-circular-progressbar/dist/styles.css';
-import {Card, CardText, CardBody, CardTitle} from 'reactstrap';
-import { fadeInDown } from 'react-animations';
-import { useSelector} from 'react-redux';
+import {Card, CardText, CardBody, CardTitle, Button, 
+    Modal, ModalHeader, ModalBody, ModalFooter,  FormGroup, Input, Label } from 'reactstrap';
+import { useSelector, useDispatch} from 'react-redux';
+import { Form, Field } from 'react-final-form'
+import { SWMCFH_STAFF } from './redux/reducers/swmcfh'
 
 
 
 export default function SWMCFHBedInfo(){
     const SWMCFH = useSelector(state => state.SWMCFH)
-    
+    const dispatch = useDispatch()
+
+    // staffing values
+    const LPNStaff = SWMCFH.staff.LPN;
+    const RNStaff = SWMCFH.staff.RN;
+    const CNAStaff = SWMCFH.staff.CNA;
+    const availableStaff = LPNStaff + RNStaff + CNAStaff
+
+    // total staffing values
+    const totalLPN = 2
+    const totalRN = 3
+    const totalCNA = 5
+    const totalStaff = totalLPN + totalRN + totalCNA 
+
+    // staffing percentage 
+    const SWMCFHStaff = availableStaff / totalStaff * 100
+    const staffMessage = SWMCFHStaff <= 50 ? <h1>Due to staffing, Bed availbilty will be affected. Please call to see availabilty</h1> : null 
+    const message = SWMCFH.staff.message
+    const onSubmit =  values => {
+        dispatch(SWMCFH_STAFF(values))
+    }
+
+
+    // will turn string into int for staffing
+    const parse = value => (isNaN(parseFloat(value)) ? "" : parseFloat(value));
+
     //total medical beds
     const totalMed = SWMCFH.availableBeds.med.A14 + SWMCFH.availableBeds.med.A13 + SWMCFH.availableBeds.med.A12 + SWMCFH.availableBeds.med.B19 +
     SWMCFH.availableBeds.med.B24 + SWMCFH.availableBeds.med.B27 + SWMCFH.availableBeds.med.C10 + SWMCFH.availableBeds.med.C11 + SWMCFH.availableBeds.med.C16 + SWMCFH.availableBeds.med.D12
@@ -30,29 +57,103 @@ export default function SWMCFHBedInfo(){
     const icuCapacity = totalIcu / totalIcuBed * 100 
     const roundedIcu = Math.round(icuCapacity / 1)
     const rounded = Math.round(totalCapacity / 1) 
-    // dispatching action 
+    // toggle modal
+    const [modal, setModal] = useState(false);
+    const toggle = () => setModal(!modal);
 
         return(
             <div className="container mb-5">
                 <div>
                     <div className="col">
                         <h1 className="hospital-text">{SWMCFH.name}</h1><br/>
-                        <div className="row ml-5">
-                                <Card className="col-3 ml-4">
+                        <div className="row">
+                            <div className="col mb-5">
+                                <Button onClick={toggle} color="danger">Staffing</Button>
+                                    <Modal isOpen={modal} toggle={toggle}>
+                                        <ModalHeader toggle={toggle}>Staffing</ModalHeader>
+                                        <ModalBody>
+                                            <Form   
+                                            onSubmit={onSubmit}
+                                            initialValues={SWMCFH.staff}
+                                            render={({ handleSubmit }) => (
+                                                        <form onSubmit={handleSubmit}>
+                                                            <div className="field col">
+                                                                <label>LPN:</label>
+                                                                <Field 
+                                                                name="LPN" 
+                                                                component="select" 
+                                                                type="number"
+                                                                parse={parse}
+                                                                >
+                                                                <option>0</option>
+                                                                <option>1</option>
+                                                                <option>2</option>
+                                                                </Field>
+                                                            </div>
+                                                            <div className="field col" >
+                                                                <label>RN:</label>
+                                                                <Field 
+                                                                name="RN" 
+                                                                component="select" 
+                                                                type="number"
+                                                                parse={parse}
+                                                                >
+                                                                <option>0</option>
+                                                                <option>1</option>
+                                                                <option>2</option>
+                                                                <option>3</option>
+                                                                </Field>
+                                                            </div>
+                                                            <div className="field col">
+                                                                <label>CNA:</label>
+                                                                <Field 
+                                                                name="CNA" 
+                                                                component="select"
+                                                                parse={parse}
+                                                                >
+                                                                <option>0</option>
+                                                                <option>1</option>
+                                                                <option>2</option>
+                                                                <option>3</option>
+                                                                <option>4</option>
+                                                                <option>5</option>
+                                                                </Field>
+                                                            </div>
+                                                            <div className="field col">
+                                                                <label>Notes:</label><br/>
+                                                                <Field 
+                                                                name="message" 
+                                                                component="textarea"
+                                                                placeholder="note" />
+                                                            </div>
+                                                            <ModalFooter>
+                                                                <Button color="primary" type="submit"  color="success">Update</Button>
+                                                                <Button color="secondary" onClick={toggle} color="danger">Cancel</Button>
+                                                            </ModalFooter> 
+                                                        </form>
+                                                        
+                                                                    )}
+                                                                    />
+                                        </ModalBody>
+                                    </Modal>
+                            </div>
+                        </div>
+                        <div className="row">
+                                <Card className="col-3 ">
                                     <CardBody className="mt-5">
                                         <CardText tag="h3" className="card-text">Medical Beds: {totalMed}</CardText>
                                         <CardText tag="h3" className="card-text">Telemetry Beds: {totalTele}</CardText>
                                         <CardText tag="h3" className="card-text">ICU Beds: {totalIcu}</CardText>
                                     </CardBody>
                                 </Card>
-                                <Card className="col-3 ml-4 fadeIn">
+                                <Card className="col-3">
                                     <CardBody>
                                         <CardText tag="h3" className="card-text">Medical Bed Availability: {medCapacity}%</CardText>
                                         <CardText tag="h3" className="card-text">Tele Bed Availability: {teleCapacity}%</CardText>
                                         <CardText tag="h3" className="card-text">ICU Bed Availability: {roundedIcu}%</CardText>
                                     </CardBody>
                                 </Card>
-                                <Card className="col-3 ml-4 fadeIn">
+                                <Card className="col-3">
                                     <CardBody className="mt-5">
                                         <br/>
                                         <CardTitle tag="h2" className="card-text">Availability:</CardTitle><br/>
@@ -60,6 +161,25 @@ export default function SWMCFHBedInfo(){
                                         >{rounded}%</CardText>
                                     </CardBody>
                                 </Card>
+                                <Card className="col-3">
+                                    <CardBody className="mt-5">
+                                        <br/>
+                                        <CardTitle tag="h2" className="card-text">Staffing:</CardTitle><br/>
+                                        <CardText tag="h1" className="card-text"
+                                        >{SWMCFHStaff}%</CardText>
+                                    </CardBody>
+                                </Card>
+                        </div>
+                        <div className="row mt-5" style={{color:'#FF1B1C', fontWeight: "600"}}>
+                            <div className="col">
+                                {staffMessage}
+                            </div>
+                            
+                        </div>
+                        <div className="row mt-5" style={{color:'#FF1B1C', fontWeight: "600"}}>
+                            <div className="col">
+                                <h3>{message}</h3>
+                            </div>
                         </div>
                     </div>
                 </div>

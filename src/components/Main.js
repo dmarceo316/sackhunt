@@ -52,14 +52,14 @@ function Main(){
             <div className="container mb-5">
             <div className="row">
                 <div className="col">
-                    <Button color="warning" 
+                    <Button color="primary" 
                     style={{marginRight: "20px"}}
                     onClick= {() => {
                         setSwmcfhDisplay(!swmcfhdisplay)
                         setSwmcchDisabled(swmcchdisabled)
                     }}
                     >SWMCFH</Button>
-                    <Button color="warning" 
+                    <Button color="primary" 
                     style={{marginRight: "20px"}}
                     onClick= {() => {
                         setSwmcchDisplay(!swmcchdisplay)
