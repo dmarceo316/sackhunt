@@ -93,3 +93,4 @@ export const DISPLAY_SWMCCH = "DISPLAY_SWMCCH"
 
 //staffing
 export const SWMCFH_STAFF = "SWMCFH_STAFF"
+export const SWMCCH_STAFF = "SWMCCH_STAFF"

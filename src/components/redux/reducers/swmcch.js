@@ -3,7 +3,7 @@ import { take_CH_A01, return_CH_A01, take_CH_A02, return_CH_A02, take_CH_A03, re
   take_CH_B02, return_CH_B02, take_CH_B03, return_CH_B03, take_CH_C01, return_CH_C01, take_CH_C02, return_CH_C02, take_CH_C03, return_CH_C03, take_CH_D01,
   return_CH_D01, take_CH_TELE_A01, return_CH_TELE_A01, take_CH_TELE_A02, return_CH_TELE_A02, take_CH_TELE_B01, return_CH_TELE_B01,
   take_CH_TELE_B02, return_CH_TELE_B02, take_CH_TELE_B03, return_CH_TELE_B03, take_CH_ICU_C01, return_CH_ICU_C01, take_CH_ICU_C02, return_CH_ICU_C02,
-  take_CH_ICU_C03, return_CH_ICU_C03, display_SWMCCH
+  take_CH_ICU_C03, return_CH_ICU_C03, swmcch_staff
 } from '../actions/ActionCreators';
 import produce from 'immer';
 
@@ -38,6 +38,12 @@ const SWMCCHState = {
         CHC03: 1
     },
     display: true 
+    },
+    staff: {
+      LPN: 2,
+      RN: 3,
+      CNA: 5,
+      message: ""
     }
 }
 
@@ -84,9 +90,8 @@ export const return_CH_ICUC02 = return_CH_ICU_C02
 export const take_CH_ICUC03 = take_CH_ICU_C03
 export const return_CH_ICUC03 = return_CH_ICU_C03
 
-//display
-export const displaySWMCCH = display_SWMCCH
-//SWMCCH
+//staffing 
+export const SWMCCH_STAFF = swmcch_staff
 
 
 export const SWMCCH = (state = SWMCCHState, action) => {
@@ -237,6 +242,10 @@ export const SWMCCH = (state = SWMCCHState, action) => {
     case ActionTypes.TAKE_CH_ICU_C03:
       return produce(state, draftState => {
         draftState.availableBeds.icu.CHC03 -= 1
+      });
+      case ActionTypes.SWMCCH_STAFF:
+        return produce(state, draftState =>{
+          draftState.staff = action.payload
       });
       default: 
       return state

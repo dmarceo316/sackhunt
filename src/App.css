@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Montserrat:wght@100&family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&display=swap');
 
 
 .App {
@@ -19,6 +20,11 @@
 .card-text{
   color: black;
   font-weight: bold;
+}
+
+.warning-text{
+  font-family: 'Noto Sans TC', sans-serif;
+  letter-spacing: 5px;
 }
 
 .hospital-text{

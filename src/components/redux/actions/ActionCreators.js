@@ -275,3 +275,8 @@ export const swmcfh_staff = (event) => ({
     type: ActionTypes.SWMCFH_STAFF,
     payload: event
 })
+
+export const swmcch_staff = (event) => ({
+    type: ActionTypes.SWMCCH_STAFF,
+    payload: event
+})

@@ -34,7 +34,6 @@ export default function SWMCFHBedInfo(){
         dispatch(SWMCFH_STAFF(values))
     }
 
-
     // will turn string into int for staffing
     const parse = value => (isNaN(parseFloat(value)) ? "" : parseFloat(value));
 
@@ -77,7 +76,7 @@ export default function SWMCFHBedInfo(){
                                             initialValues={SWMCFH.staff}
                                             render={({ handleSubmit }) => (
                                                         <form onSubmit={handleSubmit}>
-                                                            <div className="field col">
+                                                            <div className="field col-4">
                                                                 <label>LPN:</label>
                                                                 <Field 
                                                                 name="LPN" 
@@ -90,7 +89,7 @@ export default function SWMCFHBedInfo(){
                                                                 <option>2</option>
                                                                 </Field>
                                                             </div>
-                                                            <div className="field col" >
+                                                            <div className="field col-4" >
                                                                 <label>RN:</label>
                                                                 <Field 
                                                                 name="RN" 
@@ -104,7 +103,7 @@ export default function SWMCFHBedInfo(){
                                                                 <option>3</option>
                                                                 </Field>
                                                             </div>
-                                                            <div className="field col">
+                                                            <div className="field col-4">
                                                                 <label>CNA:</label>
                                                                 <Field 
                                                                 name="CNA" 
@@ -133,7 +132,7 @@ export default function SWMCFHBedInfo(){
                                                         </form>
                                                         
                                                                     )}
-                                                                    />
+                                            />
                                         </ModalBody>
                                     </Modal>
                             </div>
@@ -170,13 +169,13 @@ export default function SWMCFHBedInfo(){
                                     </CardBody>
                                 </Card>
                         </div>
-                        <div className="row mt-5" style={{color:'#FF1B1C', fontWeight: "600"}}>
+                        <div className="row mt-5 warning-text" style={{color:'#FF1B1C', fontWeight: "600"}}>
                             <div className="col">
                                 {staffMessage}
                             </div>
                             
                         </div>
-                        <div className="row mt-5" style={{color:'#FF1B1C', fontWeight: "600"}}>
+                        <div className="row mt-5 warning-text" style={{color:'#FF1B1C', fontWeight: "600"}}>
                             <div className="col">
                                 <h3>{message}</h3>
                             </div>
