@@ -33,6 +33,8 @@ import { useSelector } from 'react-redux';
 
       // staffing percentage 
       const SWMCFHStaff = availableStaff / totalStaff * 100;
+      const SWMCFHstaffMessage = SWMCFHStaff <= 50 ? <h1>Due to staffing, Bed availbilty will be affected. Please call to see availabilty</h1> : null 
+      const SWMCFHmessage = SWMCFH.staff.message
 
       //total medical beds
       const totalMed = SWMCFH.availableBeds.med.A14 + SWMCFH.availableBeds.med.A13 + SWMCFH.availableBeds.med.A12 + SWMCFH.availableBeds.med.B19 +
@@ -69,6 +71,10 @@ import { useSelector } from 'react-redux';
     
         // staffing percentage 
         const SWMCCHStaff = SWMCCHavailableStaff / SWMCCHtotalStaff * 100
+
+        const SWMCCHmessage = SWMCCH.staff.message
+
+
       //total SWMCCH medical beds
       const SWMCCHtotalMed = SWMCCH.availableBeds.med.CHA01 + SWMCCH.availableBeds.med.CHA02 + SWMCCH.availableBeds.med.CHA03 + SWMCCH.availableBeds.med.CHB01 +
       SWMCCH.availableBeds.med.CHB02 + SWMCCH.availableBeds.med.CHB03 + SWMCCH.availableBeds.med.CHC01 + SWMCCH.availableBeds.med.CHC02 + SWMCCH.availableBeds.med.CHC03 + SWMCCH.availableBeds.med.CHD01
@@ -161,6 +167,7 @@ import { useSelector } from 'react-redux';
                       <h2>{selectedSWMCFH.name}</h2>
                       <h3>Availability: {rounded}%</h3>
                       <h3>Staffing {SWMCFHStaff}%</h3>
+                      <h4 className="warning-text">{SWMCFHmessage}</h4>
                     </div>
                     </InfoWindow>
                 )}
@@ -189,6 +196,7 @@ import { useSelector } from 'react-redux';
                       <h2>{selectedSWMCCH.name}</h2>
                       <h3>Availability: {SWMCCHrounded}%</h3>
                       <h3>Staffing: {SWMCCHStaff}</h3>
+                      <h4 className="warning-text">{SWMCCHmessage}</h4>
                     </div>
                     </InfoWindow>
                 )}
@@ -200,7 +208,7 @@ import { useSelector } from 'react-redux';
               lng: OVL.LNG
             }}
             onClick={() =>{
-              setSelectedSWMCCH(OVL)
+              setSelectedOVL(OVL)
             }}
             />
                 { selectedOVL && (
@@ -217,6 +225,7 @@ import { useSelector } from 'react-redux';
                       <h2>{selectedOVL.name}</h2>
                       <h3>Availability: {OVLrounded}%</h3>
                       <h3>Staffing: {OVLStaff}</h3>
+                      <h4 className="warning-text">{OVLmessage}</h4>
                     </div>
                     </InfoWindow>
                 )}
