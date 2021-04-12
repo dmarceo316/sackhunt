@@ -12,12 +12,28 @@ import { useSelector } from 'react-redux';
       //selectors for hosptial states on redux 
       const [selectedSWMCCH, setSelectedSWMCCH] = useState(null);
       const [selectedSWMCFH, setSelectedSWMCFH] = useState(null);
+      const [selectedOVL, setSelectedOVL] = useState(null)
       const SWMCCH = useSelector(state => state.SWMCCH);
       const SWMCFH = useSelector(state => state.SWMCFH);
-
+      const OVL = useSelector(state => state.OVL)
       
 
       //SWMCFH
+      // staffing values
+      const LPNStaff = SWMCFH.staff.LPN;
+      const RNStaff = SWMCFH.staff.RN;
+      const CNAStaff = SWMCFH.staff.CNA;
+      const availableStaff = LPNStaff + RNStaff + CNAStaff;
+
+      // total staffing values
+      const totalLPN = 2;
+      const totalRN = 3;
+      const totalCNA = 5;
+      const totalStaff = totalLPN + totalRN + totalCNA; 
+
+      // staffing percentage 
+      const SWMCFHStaff = availableStaff / totalStaff * 100;
+
       //total medical beds
       const totalMed = SWMCFH.availableBeds.med.A14 + SWMCFH.availableBeds.med.A13 + SWMCFH.availableBeds.med.A12 + SWMCFH.availableBeds.med.B19 +
       SWMCFH.availableBeds.med.B24 + SWMCFH.availableBeds.med.B27 + SWMCFH.availableBeds.med.C10 + SWMCFH.availableBeds.med.C11 + SWMCFH.availableBeds.med.C16 + SWMCFH.availableBeds.med.D12
@@ -39,6 +55,20 @@ import { useSelector } from 'react-redux';
       const rounded = Math.round(totalCapacity / 1) 
       
       //SWMCCH
+        // staffing values
+        const SWMCCHLPNStaff = SWMCCH.staff.LPN;
+        const SWMCCHRNStaff = SWMCCH.staff.RN;
+        const SWMCCHCNAStaff = SWMCCH.staff.CNA;
+        const SWMCCHavailableStaff = SWMCCHLPNStaff + SWMCCHRNStaff + SWMCCHCNAStaff
+    
+        // total staffing values
+        const SWMCCHtotalLPN = 2
+        const SWMCCHtotalRN = 3
+        const SWMCCHtotalCNA = 5
+        const SWMCCHtotalStaff = SWMCCHtotalLPN + SWMCCHtotalRN + SWMCCHtotalCNA 
+    
+        // staffing percentage 
+        const SWMCCHStaff = SWMCCHavailableStaff / SWMCCHtotalStaff * 100
       //total SWMCCH medical beds
       const SWMCCHtotalMed = SWMCCH.availableBeds.med.CHA01 + SWMCCH.availableBeds.med.CHA02 + SWMCCH.availableBeds.med.CHA03 + SWMCCH.availableBeds.med.CHB01 +
       SWMCCH.availableBeds.med.CHB02 + SWMCCH.availableBeds.med.CHB03 + SWMCCH.availableBeds.med.CHC01 + SWMCCH.availableBeds.med.CHC02 + SWMCCH.availableBeds.med.CHC03 + SWMCCH.availableBeds.med.CHD01
@@ -57,6 +87,47 @@ import { useSelector } from 'react-redux';
       const SWMCCHicuCapacity = SWMCCHtotalIcu / SWMCCHtotalIcuBed * 100 
       const SWMCCHroundedIcu = Math.round(SWMCCHicuCapacity / 1)
       const SWMCCHrounded = Math.round(SWMCCHtotalCapacity / 1) 
+
+      //OVL
+        // staffing values
+        const OVLLPNStaff = OVL.staff.LPN;
+        const OVLRNStaff = OVL.staff.RN;
+        const OVLCNAStaff = OVL.staff.CNA;
+        const OVLavailableStaff = LPNStaff + RNStaff + CNAStaff
+    
+        // total staffing values
+        const OVLtotalLPN = 2
+        const OVLtotalRN = 3
+        const OVLtotalCNA = 5
+        const OVLtotalStaff = OVLtotalLPN + OVLtotalRN + OVLtotalCNA 
+    
+        // staffing percentage 
+        const OVLStaff = OVLavailableStaff / OVLtotalStaff * 100
+        const OVLstaffMessage = OVLStaff <= 50 ? <h1>Due to staffing, Bed availbilty will be affected. Please call to see availabilty</h1> : null 
+        const OVLmessage = OVL.staff.message
+
+    
+        // will turn string into int for staffing
+        const parse = value => (isNaN(parseFloat(value)) ? "" : parseFloat(value));
+
+    //total medical beds
+    const OVLtotalMed = OVL.availableBeds.med.OVLA01 + OVL.availableBeds.med.OVLA02 + OVL.availableBeds.med.OVLA03 + OVL.availableBeds.med.OVLB01 +
+    OVL.availableBeds.med.OVLB02 + OVL.availableBeds.med.OVLB03 + OVL.availableBeds.med.OVLC01 + OVL.availableBeds.med.OVLC02 + OVL.availableBeds.med.OVLC03 + OVL.availableBeds.med.OVLD01
+    const OVLtotalTele = OVL.availableBeds.tele.OVLA01  + OVL.availableBeds.tele.OVLA02 + OVL.availableBeds.tele.OVLB01 + OVL.availableBeds.tele.OVLB02 + OVL.availableBeds.tele.OVLB03
+    //total ICU beds
+    const OVLtotalIcu = OVL.availableBeds.icu.OVLC01 + OVL.availableBeds.icu.OVLC02 + OVL.availableBeds.icu.OVLC03
+    // variables for beds 
+    const OVLtotalBeds = 18
+    const OVLtotalMedBed = 10
+    const OVLtotalTeleBed = 5
+    const OVLtotalIcuBed = 3
+    const OVLBeds =  OVLtotalMed  + OVLtotalTele + OVLtotalIcu
+    const OVLtotalCapacity = OVLBeds / OVLtotalBeds * 100
+    const OVLmedCapacity = OVLtotalMed / OVLtotalMedBed * 100
+    const OVLteleCapacity = OVLtotalTele / OVLtotalTeleBed * 100
+    const OVLicuCapacity = OVLtotalIcu / OVLtotalIcuBed * 100 
+    const OVLroundedIcu = Math.round(OVLicuCapacity / 1)
+    const OVLrounded = Math.round(OVLtotalCapacity / 1) 
 
         
       return(
@@ -89,9 +160,7 @@ import { useSelector } from 'react-redux';
                     <div className="card-text">
                       <h2>{selectedSWMCFH.name}</h2>
                       <h3>Availability: {rounded}%</h3>
-                      <p>Med: {medCapacity}%</p>
-                      <p>Tele: {teleCapacity}%</p>
-                      <p>ICU: {roundedIcu}%</p>
+                      <h3>Staffing {SWMCFHStaff}%</h3>
                     </div>
                     </InfoWindow>
                 )}
@@ -119,9 +188,35 @@ import { useSelector } from 'react-redux';
                     <div className="card-text">
                       <h2>{selectedSWMCCH.name}</h2>
                       <h3>Availability: {SWMCCHrounded}%</h3>
-                      <p>Med: {SWMCCHmedCapacity}%</p>
-                      <p>Tele: {SWMCCHteleCapacity}%</p>
-                      <p>ICU: {SWMCCHroundedIcu}%</p>
+                      <h3>Staffing: {SWMCCHStaff}</h3>
+                    </div>
+                    </InfoWindow>
+                )}
+
+            <Marker
+            key={OVL.id}
+            position={{
+              lat: OVL.LAT,
+              lng: OVL.LNG
+            }}
+            onClick={() =>{
+              setSelectedSWMCCH(OVL)
+            }}
+            />
+                { selectedOVL && (
+                  <InfoWindow
+                  position={{ 
+                    lat: selectedOVL.LAT,
+                    lng: selectedOVL.LNG
+                    }}
+                  onCloseClick={() => {
+                    setSelectedOVL(null);
+                  }}                  
+                  >
+                    <div className="card-text">
+                      <h2>{selectedOVL.name}</h2>
+                      <h3>Availability: {OVLrounded}%</h3>
+                      <h3>Staffing: {OVLStaff}</h3>
                     </div>
                     </InfoWindow>
                 )}

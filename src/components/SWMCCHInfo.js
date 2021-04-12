@@ -61,7 +61,7 @@ export default function SWMCCHBedInfo(){
                         <h1 className="hospital-text">{SWMCCH.name}</h1><br/>
                         <div className="row">
                             < div className="col mb-5">
-                            <Button onClick={toggle} color="danger">Staffing</Button>
+                            <Button onClick={toggle} color="danger" className="btn-text">STAFFING</Button>
                                     <Modal isOpen={modal} toggle={toggle}>
                                         <ModalHeader toggle={toggle}>Staffing</ModalHeader>
                                         <ModalBody>

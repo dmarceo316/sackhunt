@@ -262,6 +262,140 @@ export const return_CH_ICU_C03 = () => ({
     type: ActionTypes.RETURN_CH_ICU_C03
 })
 
+
+
+
+
+
+//OVL
+
+//med
+
+export const take_OVL_A01 = () => ({
+    type: ActionTypes.TAKE_OVL_MED_A01
+})
+export const return_OVL_A01 = () => ({
+    type: ActionTypes.RETURN_OVL_MED_A01
+})
+
+export const take_OVL_A02 = () => ({
+    type: ActionTypes.TAKE_OVL_MED_A02
+})
+export const return_OVL_A02 = () => ({
+    type: ActionTypes.RETURN_OVL_MED_A02
+})
+
+export const take_OVL_A03 = () => ({
+    type: ActionTypes.TAKE_OVL_MED_A03
+})
+export const return_OVL_A03 = () => ({
+    type: ActionTypes.RETURN_OVL_MED_A03
+})
+
+export const take_OVL_B01 = () => ({
+    type: ActionTypes.TAKE_OVL_MED_B01
+})
+export const return_OVL_B01 = () => ({
+    type: ActionTypes.RETURN_OVL_MED_B01
+})
+
+export const take_OVL_B02 = () => ({
+    type: ActionTypes.TAKE_OVL_MED_B02
+})
+export const return_OVL_B02 = () => ({
+    type: ActionTypes.RETURN_OVL_MED_B02
+})
+
+export const take_OVL_B03 = () => ({
+    type: ActionTypes.TAKE_OVL_MED_B03
+})
+export const return_OVL_B03 = () => ({
+    type: ActionTypes.RETURN_OVL_MED_B03
+})
+
+export const take_OVL_C01 = () => ({
+    type: ActionTypes.TAKE_OVL_MED_C01
+})
+export const return_OVL_C01 = () => ({
+    type: ActionTypes.RETURN_OVL_MED_C01
+})
+
+export const take_OVL_C02 = () => ({
+    type: ActionTypes.TAKE_OVL_MED_C02
+})
+export const return_OVL_C02 = () => ({
+    type: ActionTypes.RETURN_OVL_MED_C02
+})
+
+export const take_OVL_C03 = () => ({
+    type: ActionTypes.TAKE_OVL_MED_C03
+})
+export const return_OVL_C03 = () => ({
+    type: ActionTypes.RETURN_OVL_MED_C03
+})
+
+export const take_OVL_D01 = () => ({
+    type: ActionTypes.TAKE_OVL_MED_D01
+})
+export const return_OVL_D01 = () => ({
+    type: ActionTypes.RETURN_OVL_MED_D01
+})
+
+
+// Actions tele beds
+
+export const take_OVL_TELE_A01 = () => ({
+    type: ActionTypes.TAKE_OVL_TELE_A01
+})
+export const return_OVL_TELE_A01 = () => ({
+    type: ActionTypes.RETURN_OVL_TELE_A01
+})
+export const take_OVL_TELE_A02 = () => ({
+    type: ActionTypes.TAKE_OVL_TELE_A02
+})
+export const return_OVL_TELE_A02 = () => ({
+    type: ActionTypes.RETURN_OVL_TELE_A02
+})
+export const take_OVL_TELE_B01 = () => ({
+    type: ActionTypes.TAKE_OVL_TELE_B01
+})
+export const return_OVL_TELE_B01 = () => ({
+    type: ActionTypes.RETURN_OVL_TELE_B01
+})
+export const take_OVL_TELE_B02 = () => ({
+    type: ActionTypes.TAKE_OVL_TELE_B02
+})
+export const return_OVL_TELE_B02 = () => ({
+    type: ActionTypes.RETURN_OVL_TELE_B02
+})
+export const take_OVL_TELE_B03 = () => ({
+    type: ActionTypes.TAKE_OVL_TELE_B03 
+})
+export const return_OVL_TELE_B03 = () => ({
+    type: ActionTypes.RETURN_OVL_TELE_B03
+})
+
+//actions Icu beds
+
+export const take_OVL_ICU_C01 = () => ({
+    type: ActionTypes.TAKE_OVL_ICU_C01
+})
+export const return_OVL_ICU_C01 = () => ({
+    type: ActionTypes.RETURN_OVL_ICU_C01
+})
+export const take_OVL_ICU_C02 = () => ({
+    type: ActionTypes.TAKE_OVL_ICU_C02
+})
+export const return_OVL_ICU_C02 = () => ({
+    type: ActionTypes.RETURN_OVL_ICU_C02
+})
+export const take_OVL_ICU_C03 = () => ({
+    type: ActionTypes.TAKE_OVL_ICU_C03
+})
+export const return_OVL_ICU_C03 = () => ({
+    type: ActionTypes.RETURN_OVL_ICU_C03
+})
+
 //actions display
 
 export const display_SWMCCH = () => ({
@@ -278,5 +412,10 @@ export const swmcfh_staff = (event) => ({
 
 export const swmcch_staff = (event) => ({
     type: ActionTypes.SWMCCH_STAFF,
+    payload: event
+})
+
+export const ovl_staff = (event) => ({
+    type: ActionTypes.OVL_STAFF,
     payload: event
 })

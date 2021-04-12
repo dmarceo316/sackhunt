@@ -1,57 +1,50 @@
 import React,{ Component, useState } from "react";
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import ChangingProgressProvider from './changingProgressProvider';
-import 'react-circular-progressbar/dist/styles.css';
 import {Card, CardText, CardBody, CardTitle, Button, 
     Modal, ModalHeader, ModalBody, ModalFooter,  FormGroup, Input, Label } from 'reactstrap';
 import { useSelector, useDispatch} from 'react-redux';
 import { Form, Field } from 'react-final-form'
-import { SWMCFH_STAFF } from './redux/reducers/swmcfh'
+import { OVL_STAFF } from './redux/reducers/ovl'
 
-
-
-export default function SWMCFHBedInfo(){
-    const SWMCFH = useSelector(state => state.SWMCFH)
+export default function OVLBedInfo(){
+    const OVL = useSelector(state => state.OVL)
     const dispatch = useDispatch()
 
-    // staffing values
-    const LPNStaff = SWMCFH.staff.LPN;
-    const RNStaff = SWMCFH.staff.RN;
-    const CNAStaff = SWMCFH.staff.CNA;
-    const availableStaff = LPNStaff + RNStaff + CNAStaff
-
-    // total staffing values
-    const totalLPN = 2
-    const totalRN = 3
-    const totalCNA = 5
-    const totalStaff = totalLPN + totalRN + totalCNA 
-
-    // staffing percentage 
-    const SWMCFHStaff = availableStaff / totalStaff * 100
-    const staffMessage = SWMCFHStaff <= 50 ? <h1>Due to staffing, Bed availbilty will be affected. Please call to see availabilty</h1> : null 
-    const message = SWMCFH.staff.message
+        // staffing values
+        const LPNStaff = OVL.staff.LPN;
+        const RNStaff = OVL.staff.RN;
+        const CNAStaff = OVL.staff.CNA;
+        const availableStaff = LPNStaff + RNStaff + CNAStaff
     
-    const onSubmit =  values => {
-        dispatch(SWMCFH_STAFF(values))
-    }
-
-    // will turn string into int for staffing
-    const parse = value => (isNaN(parseFloat(value)) ? "" : parseFloat(value));
+        // total staffing values
+        const totalLPN = 2
+        const totalRN = 3
+        const totalCNA = 5
+        const totalStaff = totalLPN + totalRN + totalCNA 
+    
+        // staffing percentage 
+        const OVLStaff = availableStaff / totalStaff * 100
+        const staffMessage = OVLStaff <= 50 ? <h1>Due to staffing, Bed availbilty will be affected. Please call to see availabilty</h1> : null 
+        const message = OVL.staff.message
+        const onSubmit =  values => {
+            dispatch(OVL_STAFF(values))
+        }
+    
+        // will turn string into int for staffing
+        const parse = value => (isNaN(parseFloat(value)) ? "" : parseFloat(value));
 
     //total medical beds
-    const totalMed = SWMCFH.availableBeds.med.A14 + SWMCFH.availableBeds.med.A13 + SWMCFH.availableBeds.med.A12 + SWMCFH.availableBeds.med.B19 +
-    SWMCFH.availableBeds.med.B24 + SWMCFH.availableBeds.med.B27 + SWMCFH.availableBeds.med.C10 + SWMCFH.availableBeds.med.C11 + SWMCFH.availableBeds.med.C16 + SWMCFH.availableBeds.med.D12
-    // total tele beds 
-    const totalTele = SWMCFH.availableBeds.tele.A20  + SWMCFH.availableBeds.tele.A24 + SWMCFH.availableBeds.tele.B03 + SWMCFH.availableBeds.tele.B04 + SWMCFH.availableBeds.tele.B05
+    const totalMed = OVL.availableBeds.med.OVLA01 + OVL.availableBeds.med.OVLA02 + OVL.availableBeds.med.OVLA03 + OVL.availableBeds.med.OVLB01 +
+    OVL.availableBeds.med.OVLB02 + OVL.availableBeds.med.OVLB03 + OVL.availableBeds.med.OVLC01 + OVL.availableBeds.med.OVLC02 + OVL.availableBeds.med.OVLC03 + OVL.availableBeds.med.OVLD01
+    const totalTele = OVL.availableBeds.tele.OVLA01  + OVL.availableBeds.tele.OVLA02 + OVL.availableBeds.tele.OVLB01 + OVL.availableBeds.tele.OVLB02 + OVL.availableBeds.tele.OVLB03
     //total ICU beds
-    const totalIcu = SWMCFH.availableBeds.icu.C01 + SWMCFH.availableBeds.icu.C02 + SWMCFH.availableBeds.icu.C06 
+    const totalIcu = OVL.availableBeds.icu.OVLC01 + OVL.availableBeds.icu.OVLC02 + OVL.availableBeds.icu.OVLC03
     // variables for beds 
     const totalBeds = 18
     const totalMedBed = 10
     const totalTeleBed = 5
     const totalIcuBed = 3
-    const SWMCFHBeds =  totalMed  + totalTele + totalIcu
-    const totalCapacity = SWMCFHBeds / totalBeds * 100
+    const OVLBeds =  totalMed  + totalTele + totalIcu
+    const totalCapacity = OVLBeds / totalBeds * 100
     const medCapacity = totalMed / totalMedBed * 100
     const teleCapacity = totalTele / totalTeleBed * 100
     const icuCapacity = totalIcu / totalIcuBed * 100 
@@ -65,16 +58,16 @@ export default function SWMCFHBedInfo(){
             <div className="container mb-5">
                 <div>
                     <div className="col">
-                        <h1 className="hospital-text">{SWMCFH.name}</h1><br/>
+                        <h1 className="hospital-text">{OVL.name}</h1><br/>
                         <div className="row">
-                            <div className="col mb-5">
-                                <Button onClick={toggle} color="danger" className="btn-text">STAFFING</Button>
+                            < div className="col mb-5">
+                            <Button onClick={toggle} color="danger" className="btn-text">STAFFING</Button>
                                     <Modal isOpen={modal} toggle={toggle}>
                                         <ModalHeader toggle={toggle}>Staffing</ModalHeader>
                                         <ModalBody>
                                             <Form   
                                             onSubmit={onSubmit}
-                                            initialValues={SWMCFH.staff}
+                                            initialValues={OVL.staff}
                                             render={({ handleSubmit }) => (
                                                         <form onSubmit={handleSubmit}>
                                                             <div className="field col-4">
@@ -137,9 +130,9 @@ export default function SWMCFHBedInfo(){
                                         </ModalBody>
                                     </Modal>
                             </div>
-                        </div>
-                        <div className="row">
-                                <Card className="col-3 ">
+                            <div className="row">
+                            <Card className="col-3"
+                                >
                                     <CardBody className="mt-5">
                                         <CardText tag="h3" className="card-text">Medical Beds: {totalMed}</CardText>
                                         <CardText tag="h3" className="card-text">Telemetry Beds: {totalTele}</CardText>
@@ -166,9 +159,10 @@ export default function SWMCFHBedInfo(){
                                         <br/>
                                         <CardTitle tag="h2" className="card-text">Staffing:</CardTitle><br/>
                                         <CardText tag="h1" className="card-text"
-                                        >{SWMCFHStaff}%</CardText>
+                                        >{OVLStaff}%</CardText>
                                     </CardBody>
                                 </Card>
+                            </div>
                         </div>
                         <div className="row mt-5 warning-text" style={{color:'#FF1B1C', fontWeight: "600"}}>
                             <div className="col">
@@ -186,8 +180,3 @@ export default function SWMCFHBedInfo(){
             </div>
         )
     }
-
-
-
-
-
