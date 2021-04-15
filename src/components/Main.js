@@ -4,6 +4,7 @@ import RenderMap from './Map';
 import SWMCCHBedInfo from './SWMCCHInfo';
 import SWMCFHBedInfo from './BedInfo';
 import OVLBedInfo from './OVLinfo';
+import OVLSwitchboard from './OVLswitchboard';
 import Switchboard from './switchboard';
 import SWMCCHSwitchboard from './SWMCCHSwitchboard'
 import { tada, pulse, fadeInDown } from 'react-animations';
@@ -107,6 +108,7 @@ function Main(){
                     ovldisplay ? 
                     <div>
                     <OVLBedInfo/>
+                    <OVLSwitchboard/>
                     </div>
                             : null
                 }
