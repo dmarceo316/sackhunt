@@ -13,6 +13,9 @@ import { SWMCFH_STAFF } from './redux/reducers/swmcfh'
 export default function SWMCFHBedInfo(){
     const SWMCFH = useSelector(state => state.SWMCFH)
     const dispatch = useDispatch()
+    var d = new Date();
+    var datestring = ("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" +
+    d.getFullYear() + " " + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
 
     // staffing values
     const LPNStaff = SWMCFH.staff.LPN;
@@ -29,7 +32,7 @@ export default function SWMCFHBedInfo(){
     // staffing percentage 
     const SWMCFHStaff = availableStaff / totalStaff * 100
     const staffMessage = SWMCFHStaff <= 50 ? <h1>Due to staffing, Bed availbilty will be affected. Please call to see availabilty</h1> : null 
-    const message = SWMCFH.staff.message
+    const message = SWMCFH.staff.message + ': ' + datestring
     
     const onSubmit =  values => {
         dispatch(SWMCFH_STAFF(values))
@@ -127,7 +130,7 @@ export default function SWMCFHBedInfo(){
                                                                 placeholder="note" />
                                                             </div>
                                                             <ModalFooter>
-                                                                <Button color="primary" type="submit"  color="success">Update</Button>
+                                                                <Button color="primary" type="submit" onClick={toggle}  color="success">Update</Button>
                                                                 <Button color="secondary" onClick={toggle} color="danger">Cancel</Button>
                                                             </ModalFooter> 
                                                         </form>

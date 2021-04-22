@@ -8,6 +8,9 @@ import { OVL_STAFF } from './redux/reducers/ovl'
 export default function OVLBedInfo(){
     const OVL = useSelector(state => state.OVL)
     const dispatch = useDispatch()
+    var d = new Date();
+    var datestring = ("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" +
+    d.getFullYear() + " " + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
 
         // staffing values
         const LPNStaff = OVL.staff.LPN;
@@ -24,9 +27,10 @@ export default function OVLBedInfo(){
         // staffing percentage 
         const OVLStaff = availableStaff / totalStaff * 100
         const staffMessage = OVLStaff <= 50 ? <h1>Due to staffing, Bed availbilty will be affected. Please call to see availabilty</h1> : null 
-        const message = OVL.staff.message
+        const message = OVL.staff.message + ': ' + datestring
         const onSubmit =  values => {
             dispatch(OVL_STAFF(values))
+            
         }
     
         // will turn string into int for staffing
@@ -120,7 +124,7 @@ export default function OVLBedInfo(){
                                                                 placeholder="note" />
                                                             </div>
                                                             <ModalFooter>
-                                                                <Button color="primary" type="submit"  color="success">Update</Button>
+                                                                <Button color="primary" type="submit" onClick={toggle}  color="success">Update</Button>
                                                                 <Button color="secondary" onClick={toggle} color="danger">Cancel</Button>
                                                             </ModalFooter> 
                                                         </form>

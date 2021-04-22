@@ -8,6 +8,9 @@ import { SWMCCH_STAFF } from './redux/reducers/swmcch'
 export default function SWMCCHBedInfo(){
     const SWMCCH = useSelector(state => state.SWMCCH)
     const dispatch = useDispatch()
+    var d = new Date();
+    var datestring = ("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" +
+    d.getFullYear() + " " + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
 
         // staffing values
         const LPNStaff = SWMCCH.staff.LPN;
@@ -24,7 +27,7 @@ export default function SWMCCHBedInfo(){
         // staffing percentage 
         const SWMCCHStaff = availableStaff / totalStaff * 100
         const staffMessage = SWMCCHStaff <= 50 ? <h1>Due to staffing, Bed availbilty will be affected. Please call to see availabilty</h1> : null 
-        const message = SWMCCH.staff.message
+        const message = SWMCCH.staff.message + ': ' + datestring
         const onSubmit =  values => {
             dispatch(SWMCCH_STAFF(values))
         }
@@ -120,7 +123,7 @@ export default function SWMCCHBedInfo(){
                                                                 placeholder="note" />
                                                             </div>
                                                             <ModalFooter>
-                                                                <Button color="primary" type="submit"  color="success">Update</Button>
+                                                                <Button color="primary" type="submit" onClick={toggle} color="success">Update</Button>
                                                                 <Button color="secondary" onClick={toggle} color="danger">Cancel</Button>
                                                             </ModalFooter> 
                                                         </form>

@@ -246,7 +246,8 @@ export const OVL = (state = OVLState, action) => {
         });
         case ActionTypes.OVL_STAFF:
             return produce(state, draftState =>{
-            draftState.staff = action.payload
+            draftState.staff = action.payload 
+            
         });
         default: 
         return state

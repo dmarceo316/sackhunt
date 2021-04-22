@@ -9,6 +9,10 @@ import {
 import { useSelector } from 'react-redux';
   
       function Map() {
+      var d = new Date();
+      var datestring = ("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" +
+        d.getFullYear() + " " + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
+
       //selectors for hosptial states on redux 
       const [selectedSWMCCH, setSelectedSWMCCH] = useState(null);
       const [selectedSWMCFH, setSelectedSWMCFH] = useState(null);
@@ -34,7 +38,7 @@ import { useSelector } from 'react-redux';
       // staffing percentage 
       const SWMCFHStaff = availableStaff / totalStaff * 100;
       const SWMCFHstaffMessage = SWMCFHStaff <= 50 ? <h1>Due to staffing, Bed availbilty will be affected. Please call to see availabilty</h1> : null 
-      const SWMCFHmessage = SWMCFH.staff.message
+      const SWMCFHmessage = SWMCFH.staff.message + ": "  +  datestring
 
       //total medical beds
       const totalMed = SWMCFH.availableBeds.med.A14 + SWMCFH.availableBeds.med.A13 + SWMCFH.availableBeds.med.A12 + SWMCFH.availableBeds.med.B19 +
@@ -72,7 +76,7 @@ import { useSelector } from 'react-redux';
         // staffing percentage 
         const SWMCCHStaff = SWMCCHavailableStaff / SWMCCHtotalStaff * 100
 
-        const SWMCCHmessage = SWMCCH.staff.message
+        const SWMCCHmessage = SWMCCH.staff.message + ": "  +  datestring
 
 
       //total SWMCCH medical beds
@@ -110,7 +114,7 @@ import { useSelector } from 'react-redux';
         // staffing percentage 
         const OVLStaff = OVLavailableStaff / OVLtotalStaff * 100
         const OVLstaffMessage = OVLStaff <= 50 ? <h1>Due to staffing, Bed availbilty will be affected. Please call to see availabilty</h1> : null 
-        const OVLmessage = OVL.staff.message
+        const OVLmessage = OVL.staff.message + ": "  +  datestring
 
     
         // will turn string into int for staffing
@@ -195,7 +199,7 @@ import { useSelector } from 'react-redux';
                     <div className="card-text">
                       <h2>{selectedSWMCCH.name}</h2>
                       <h3>Availability: {SWMCCHrounded}%</h3>
-                      <h3>Staffing: {SWMCCHStaff}</h3>
+                      <h3>Staffing: {SWMCCHStaff}%</h3>
                       <h4 className="warning-text">{SWMCCHmessage}</h4>
                     </div>
                     </InfoWindow>
@@ -224,7 +228,7 @@ import { useSelector } from 'react-redux';
                     <div className="card-text">
                       <h2>{selectedOVL.name}</h2>
                       <h3>Availability: {OVLrounded}%</h3>
-                      <h3>Staffing: {OVLStaff}</h3>
+                      <h3>Staffing: {OVLStaff}%</h3>
                       <h4 className="warning-text">{OVLmessage}</h4>
                     </div>
                     </InfoWindow>
