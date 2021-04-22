@@ -6,7 +6,7 @@ import { take_OVLA01, return_OVLA01, take_OVLA02, return_OVLA02, take_OVLA03, re
     return_OVLC02, take_OVLC03, return_OVLC03, take_OVLD01, return_OVLD01, take_OVL_TELEA01, return_OVL_TELEA01,
     take_OVL_TELEA02, return_OVL_TELEA02, take_OVL_TELEB01, return_OVL_TELEB01, take_OVL_TELEB02, return_OVL_TELEB02,
     take_OVL_TELEB03, return_OVL_TELEB03, take_OVL_ICUC01, return_OVL_ICUC01, take_OVL_ICUC02, return_OVL_ICUC02,
-    take_OVL_ICUC03, return_OVL_ICUC03 } from './redux/reducers/ovl'
+    take_OVL_ICUC03, return_OVL_ICUC03 } from './redux/reducers/ovl';
 
 export default function OVLSwitchboard(){
     const dispatch = useDispatch()

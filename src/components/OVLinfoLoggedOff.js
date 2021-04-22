@@ -1,11 +1,9 @@
-import React,{ useState } from "react";
-import {Card, CardText, CardBody, CardTitle, Button, 
-    Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
+import React,{ Component, useState } from "react";
+import {Card, CardText, CardBody, CardTitle } from 'reactstrap';
 import { useSelector, useDispatch} from 'react-redux';
-import { Form, Field } from 'react-final-form'
 import { OVL_STAFF } from './redux/reducers/ovl'
 
-export default function OVLBedInfo(){
+export default function OVLBedInfoLoggedOff(){
     const OVL = useSelector(state => state.OVL)
     const dispatch = useDispatch()
     var d = new Date();
@@ -64,76 +62,6 @@ export default function OVLBedInfo(){
                     <div className="col">
                         <h1 className="hospital-text">{OVL.name}</h1><br/>
                         <div className="row">
-                            < div className="col mb-5">
-                            <Button onClick={toggle} color="danger" className="btn-text">STAFFING</Button>
-                                    <Modal isOpen={modal} toggle={toggle}>
-                                        <ModalHeader toggle={toggle}>Staffing</ModalHeader>
-                                        <ModalBody>
-                                            <Form   
-                                            onSubmit={onSubmit}
-                                            initialValues={OVL.staff}
-                                            render={({ handleSubmit }) => (
-                                                        <form onSubmit={handleSubmit}>
-                                                            <div className="field col-4">
-                                                                <label>LPN:</label>
-                                                                <Field 
-                                                                name="LPN" 
-                                                                component="select" 
-                                                                type="number"
-                                                                parse={parse}
-                                                                >
-                                                                <option>0</option>
-                                                                <option>1</option>
-                                                                <option>2</option>
-                                                                </Field>
-                                                            </div>
-                                                            <div className="field col-4" >
-                                                                <label>RN:</label>
-                                                                <Field 
-                                                                name="RN" 
-                                                                component="select" 
-                                                                type="number"
-                                                                parse={parse}
-                                                                >
-                                                                <option>0</option>
-                                                                <option>1</option>
-                                                                <option>2</option>
-                                                                <option>3</option>
-                                                                </Field>
-                                                            </div>
-                                                            <div className="field col-4">
-                                                                <label>CNA:</label>
-                                                                <Field 
-                                                                name="CNA" 
-                                                                component="select"
-                                                                parse={parse}
-                                                                >
-                                                                <option>0</option>
-                                                                <option>1</option>
-                                                                <option>2</option>
-                                                                <option>3</option>
-                                                                <option>4</option>
-                                                                <option>5</option>
-                                                                </Field>
-                                                            </div>
-                                                            <div className="field col">
-                                                                <label>Notes:</label><br/>
-                                                                <Field 
-                                                                name="message" 
-                                                                component="textarea"
-                                                                placeholder="note" />
-                                                            </div>
-                                                            <ModalFooter>
-                                                                <Button color="primary" type="submit" onClick={toggle}  color="success">Update</Button>
-                                                                <Button color="secondary" onClick={toggle} color="danger">Cancel</Button>
-                                                            </ModalFooter> 
-                                                        </form>
-                                                        
-                                                                    )}
-                                            />
-                                        </ModalBody>
-                                    </Modal>
-                            </div>
                             <div className="row">
                             <Card className="col-3"
                                 >

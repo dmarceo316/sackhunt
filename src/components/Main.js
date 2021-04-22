@@ -1,29 +1,12 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import RenderMap from './Map';
-import SWMCCHBedInfo from './SWMCCHInfo';
-import SWMCFHBedInfo from './BedInfo';
-import OVLBedInfo from './OVLinfo';
-import OVLSwitchboard from './OVLswitchboard';
-import Switchboard from './switchboard';
-import SWMCCHSwitchboard from './SWMCCHSwitchboard'
-import { tada, pulse, fadeInDown } from 'react-animations';
-import Radium, {StyleRoot} from 'radium';
-import { Button } from 'reactstrap'
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Home from './Home';
+import OVLView from './OVLView';
+import SWMCCHView from './SWMCCHView';
+import SWMCFHView from './SWMCFHView';
 
 
-
-const styles = {
-    tada: {
-        animation: 'x 1s',
-        animationName: Radium.keyframes(tada, 'tada')
-    },
-    pulse: {
-        animation: 'x 2s',
-        animationName: Radium.keyframes(pulse, 'pulse')
-    }
-
-}
 
 const mapStateToProps = (state) => {
     return {
@@ -33,91 +16,60 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = ( dispatch ) => {
+const mapDispatchToProps = () => {
     return {
     }
 }
 
+// function Home() {
+//     return <h2>Home</h2>;
+// }
+
+// function OVLView() {
+//     return <h2>OVL</h2>;
+// }
+
 function Main(){
-    const [swmcchdisplay, setSwmcchDisplay] = useState(false)
-    const [swmcfhdisplay, setSwmcfhDisplay] = useState(false)
-    const [ovldisplay, setOvlDisplay] = useState(false)
-    const [swmcfhdisabled, setSwmcfhDisabled] = useState(false)
-    const [swmcchdisabled, setSwmcchDisabled] = useState(false)
-    const [ovldisabled, setOvlDisabled] = useState(false)
 
     return(
-        <div className="bg">
-            <div className="pt-5">
-            <StyleRoot>
-            <h1 className="title anime" style={styles.tada}>Sack Hunt</h1><p style={{fontWeight: "bold"}, styles.pulse}>Happy Hunting!</p>
-            </StyleRoot>
-            </div>
-            <RenderMap/>
-            <div className="container mb-5">
-            <div className="row">
-                <div className="col">
-                    <Button 
-                    color="primary" 
-                    className="btn-text"
-                    style={{marginRight: "20px"}}
-                    onClick= {() => {
-                        setSwmcfhDisplay(!swmcfhdisplay)
-                        setSwmcchDisabled(swmcchdisabled)
-                    }}
-                    >SWMCFH</Button>
-                    <Button 
-                    color="primary" 
-                    className="btn-text"
-                    style={{marginRight: "20px"}}
-                    onClick= {() => {
-                        setSwmcchDisplay(!swmcchdisplay)
-                        setSwmcfhDisplay(swmcfhdisplay)
-                        setSwmcfhDisabled(!swmcfhdisabled)
-                    }}
-                    >SWMCCH</Button>
-                    <Button 
-                    color="primary" 
-                    className="btn-text"
-                    style={{marginRight: "20px"}}
-                    onClick= {() => {
-                        setOvlDisplay(!ovldisplay)
-                        setOvlDisabled(!ovldisabled)
-                    }}
-                    >OVL</Button>
-                </div>
-            </div>
-            <div className="row mt-5">
-                {
-                    swmcchdisplay ? 
-                    <div>
-                    <SWMCCHBedInfo/>
-                    <SWMCCHSwitchboard />
-                    </div>
-                            : null
-                }
-                                {
-                    swmcfhdisplay ? 
-                    <div>
-                    <SWMCFHBedInfo/>
-                    <Switchboard/>
-                    </div>
-                            : null
-                }
-                                {
-                    ovldisplay ? 
-                    <div>
-                    <OVLBedInfo/>
-                    <OVLSwitchboard/>
-                    </div>
-                            : null
-                }
-            </div>
-        </div>
+        <Router>
             <div>
-                <h3 className="pb-5">AA- Design</h3>
+                <nav>
+                    <ul>
+                    <li>
+                    <Link to="/">Home</Link>
+                    </li>
+                    <li>
+                    <Link to="/OVL">OVL</Link>
+                    </li>
+                    <li>
+                    <Link to="/SWMCCH">SWMCCH</Link>
+                    </li>
+                    <li>
+                    <Link to="/SWMCFH">SWMCFH</Link>
+                    </li>
+                    </ul>
+                </nav>
+            <Switch>
+                <Route exact path="/">
+                    <Home/>
+                </Route>
+                <Route path="/OVL">
+                    <OVLView/>
+                </Route>
+                <Route path="/SWMCCH">
+                    <SWMCCHView/>
+                </Route>
+                <Route path="/SWMCFH">
+                    <SWMCFHView/>
+                </Route>
+            </Switch>
             </div>
-        </div>
+        </Router> 
     )
 }
+
+
+
+
 export default connect(mapStateToProps, mapDispatchToProps)(Main)

@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import RenderMap from './Map';
-import SWMCCHBedInfo from './SWMCCHInfo';
-import SWMCFHBedInfo from './BedInfo';
-import OVLBedInfo from './OVLinfo';
-import OVLSwitchboard from './OVLswitchboard';
-import Switchboard from './switchboard';
-import SWMCCHSwitchboard from './SWMCCHSwitchboard'
-import { tada, pulse, fadeInDown } from 'react-animations';
+import SWMCCHBedInfoLoggedOff from './SWMCCHInfoLoggedOff';
+import SWMCFHBedInfoLoggedOff from './SWMCFHBedInfoLoggedOff';
+import OVLBedInfoLoggedOff from './OVLinfoLoggedOff';
+import { tada, pulse} from 'react-animations';
 import Radium, {StyleRoot} from 'radium';
 import { Button } from 'reactstrap'
 
@@ -79,21 +76,21 @@ export default function Home(){
                 {
                     swmcchdisplay ? 
                     <div>
-                    <SWMCCHBedInfo/> 
+                    <SWMCCHBedInfoLoggedOff/> 
                     </div>
                             : null
                 }
                                 {
                     swmcfhdisplay ? 
                     <div>
-                    <SWMCFHBedInfo/>
+                    <SWMCFHBedInfoLoggedOff/>
                     </div>
                             : null
                 }
                                 {
                     ovldisplay ? 
                     <div>
-                    <OVLBedInfo/>
+                    <OVLBedInfoLoggedOff/>
                     </div>
                             : null
                 }
